@@ -20,7 +20,7 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -41,8 +41,18 @@ function randomInteger(min, max) {
 function setDelay(difficulty) {
   // TODO: Write your code here.
   
-}
-
+    switch (difficulty) {
+      case 'easy':
+        return 1500;
+      case 'normal':
+        return 1000;
+      case 'hard':
+        return randomInteger(600, 1200);
+      default:
+        throw new Error('Invalid difficulty level');
+    }
+  }
+  
 /**
  * Chooses a random hole from a list of holes.
  *
@@ -57,9 +67,22 @@ function setDelay(difficulty) {
  * const holes = document.querySelectorAll('.hole');
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
-function chooseHole(holes) {
-  // TODO: Write your code here.
 
+function chooseHole(holes) {
+  // 1. Generate a random integer from 0 to holes.length - 1 and assign it to an index variable.
+  const index = Math.floor(Math.random() * holes.length);
+  
+  // 2. Get a random hole with the random index.
+  const hole = holes[index];
+  
+  // 3. if hole === lastHole, then call chooseHole(holes) again because you don't want to return the same hole.
+  if (hole === lastHole) {
+    return chooseHole(holes);
+  }
+  
+  // 4. if hole is not the same as the lastHole, then keep track of it (lastHole = hole) and return the hole.
+  lastHole = hole;
+  return hole;
 }
 
 /**
