@@ -105,9 +105,17 @@ function chooseHole(holes) {
 *  //   return gameStopped
 *
 */
+
 function gameOver() {
-  // TODO: Write your code here
-  
+  if (time > 0) {
+    // Call showUp() to set a different delay and hole
+    const timeoutId = showUp(); // Adjust the difficulty as needed
+    return timeoutId;
+  } else {
+    // Call stopGame() to stop the game
+    const gameStopped = stopGame();
+    return gameStopped;
+  }
 }
 
 /**
@@ -148,7 +156,7 @@ function showAndHide(hole, delay) {
     // Call the toggleVisibility() function to remove the show class
     toggleVisibility(hole);
     
-    // Call gameOver() function (assuming this is defined elsewhere)
+    // Call gameOver() function (defined elsewhere)
     gameOver();
   }, delay); // Set the delay to the one provided as a parameter
   
@@ -265,7 +273,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song);  //optional
+  stopAudio(song);  //optional
   clearInterval(timer);
   return "game stopped";
 }
@@ -277,8 +285,8 @@ function stopGame(){
 *
 */
 function startGame(){
-  //setDuration(10);
-  //showUp();
+  setDuration(10);
+  showUp();
   return "game started";
 }
 
