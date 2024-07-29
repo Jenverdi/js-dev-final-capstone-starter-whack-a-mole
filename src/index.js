@@ -75,8 +75,6 @@ function setDelay(difficulty) {
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
 
-let lastHole;
-
 function chooseHole(holes) {
   // Generate a random integer
   const index = Math.floor(Math.random() * holes.length);
