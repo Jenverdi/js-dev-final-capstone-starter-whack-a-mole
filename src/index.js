@@ -4,6 +4,7 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score');
 const timerDisplay = document.querySelector('#timer'); 
 
+
 let time = 0;
 let timer;
 let lastHole = 0;
@@ -38,21 +39,27 @@ function randomInteger(min, max) {
  * setDelay("hard") //> returns 856 (returns a random number between 600 and 1200).
  *
  */
+
 function setDelay(difficulty) {
-  // TODO: Write your code here.
-  
-    switch (difficulty) {
-      case 'easy':
-        return 1500;
-      case 'normal':
-        return 1000;
-      case 'hard':
-        return randomInteger(600, 1200);
-      default:
-        throw new Error('Invalid difficulty level');
-    }
+
+  function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  
+
+  // Determines the delay based on the difficulty level
+
+  switch (difficulty) {
+    case 'easy':
+      return 1500; // 1.5 seconds
+    case 'normal':
+      return 1000; // 1 second
+    case 'hard':
+      return randomInteger(600, 1200); // Random time between 600 and 1200 milliseconds
+    default:
+      throw new Error('Invalid difficulty level'); // Handle invalid difficulty input
+  }
+}
+
 /**
  * Chooses a random hole from a list of holes.
  *
@@ -68,22 +75,23 @@ function setDelay(difficulty) {
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
 
+let lastHole;
+
 function chooseHole(holes) {
-  // 1. Generate a random integer from 0 to holes.length - 1 and assign it to an index variable.
+  // Generate a random integer from 0 to holes.length - 1
   const index = Math.floor(Math.random() * holes.length);
-  
-  // 2. Get a random hole with the random index.
   const hole = holes[index];
-  
-  // 3. if hole === lastHole, then call chooseHole(holes) again because you don't want to return the same hole.
+
+  // Check if the selected hole is the same as the last selected hole
   if (hole === lastHole) {
-    return chooseHole(holes);
+    return chooseHole(holes); // Call the function again to choose a different hole
   }
-  
-  // 4. if hole is not the same as the lastHole, then keep track of it (lastHole = hole) and return the hole.
+
+  // Update lastHole to the selected hole and return it
   lastHole = hole;
   return hole;
 }
+
 
 /**
 *
