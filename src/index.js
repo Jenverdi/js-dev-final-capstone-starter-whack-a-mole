@@ -78,11 +78,11 @@ function setDelay(difficulty) {
 let lastHole;
 
 function chooseHole(holes) {
-  // Generate a random integer from 0 to holes.length - 1
+  // Generate a random integer
   const index = Math.floor(Math.random() * holes.length);
   const hole = holes[index];
 
-  // Check if the selected hole is the same as the last selected hole
+  // Check if the selected hole is the same
   if (hole === lastHole) {
     return chooseHole(holes); // Call the function again to choose a different hole
   }
@@ -116,11 +116,9 @@ function chooseHole(holes) {
 
 function gameOver() {
   if (time > 0) {
-    // Call showUp() to set a different delay and hole
-    const timeoutId = showUp(); // Adjust the difficulty as needed
+    const timeoutId = showUp();
     return timeoutId;
   } else {
-    // Call stopGame() to stop the game
     const gameStopped = stopGame();
     return gameStopped;
   }
@@ -135,14 +133,10 @@ function gameOver() {
 * to call `showAndHide(hole, delay)`.
 *
 */
-function showUp(difficulty) {
-  // Call setDelay() to get the delay based on the difficulty
-  let delay = setDelay(difficulty);
 
-  // Call chooseHole() to get a random hole
+function showUp() {
+  const delay = setDelay(difficulty);
   const hole = chooseHole(document.querySelectorAll('.hole'));
-
-  // Call showAndHide() with the selected hole and delay
   return showAndHide(hole, delay);
 }
 
@@ -156,18 +150,11 @@ function showUp(difficulty) {
 */
 
 function showAndHide(hole, delay) {
-  // Call the toggleVisibility() function to add the show class
   toggleVisibility(hole);
-  
-  // Set the timeout to remove the show class after the specified delay
   const timeoutID = setTimeout(() => {
-    // Call the toggleVisibility() function to remove the show class
     toggleVisibility(hole);
-    
-    // Call gameOver() function (defined elsewhere)
     gameOver();
-  }, delay); // Set the delay to the one provided as a parameter
-  
+  }, delay); 
   return timeoutID;
 }
 
@@ -177,10 +164,9 @@ function showAndHide(hole, delay) {
 * a given hole. It returns the hole.
 *
 */
+
 function toggleVisibility(hole) {
-  // Use classList.toggle() to add or remove the 'show' class
   hole.classList.toggle('show');
-  
   return hole;
 }
 
