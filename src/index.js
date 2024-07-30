@@ -4,12 +4,11 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score');
 const timerDisplay = document.querySelector('#timer'); 
 
-
-let time = 0;
+let time;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = "easy";
 
 /**
  * Generates a random integer within a range.
@@ -55,8 +54,6 @@ function setDelay(difficulty) {
       return 1000; // 1 second
     case 'hard':
       return randomInteger(600, 1200); // Random time between 600 and 1200 milliseconds
-    default:
-      throw new Error('Invalid difficulty level'); // Handle invalid difficulty input
   }
 }
 
@@ -198,6 +195,7 @@ function clearScore() {
   score.textContent = points;
   return points;
 }
+clearScore()
 
 /**
 *
@@ -224,7 +222,7 @@ function startTimer() {
     timer = setInterval(updateTimer, 1000);
     return timer;
   }
-
+startTimer()
 
 /**
 *
@@ -240,19 +238,20 @@ function whack(event) {
   return points;
 }
 
+
 /**
 *
 * Adds the 'click' event listeners to the moles. See the instructions
 * for an example on how to set event listeners using a for loop.
 */
 
-function setEventListeners(moles) {
-  moles.forEach(mole =>
-    mole.addEventListener('click', whack)
+function setEventListeners(){
+  moles.forEach(
+    mole => mole.addEventListener("click", whack)
   );
   return moles;
 }
-
+setEventListeners();
 
 /**
 *
