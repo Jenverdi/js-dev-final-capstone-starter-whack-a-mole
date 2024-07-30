@@ -77,7 +77,7 @@ function setDelay(difficulty) {
 
 function chooseHole(holes) {
   // Generate a random integer
-  const index = Math.floor(Math.random() * holes.length);
+  const index = randomInteger(0, 8);
   const hole = holes[index];
 
   // Check if the selected hole is the same
@@ -179,8 +179,13 @@ function toggleVisibility(hole) {
 *
 */
 function updateScore() {
-  // TODO: Write your code here
+  // Increment the points global variable by 1 point
+  points ++;
 
+  // Update score.textContent with points
+  score.textContent = points;
+
+  // Return points
   return points;
 }
 
@@ -192,12 +197,15 @@ function updateScore() {
 *
 */
 function clearScore() {
-  // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+  // Set the points global variable to 0
+  points = 0;
+
+  // Update score.textContent with points
+  score.textContent = points;
+
+  // Return points
   return points;
 }
-
 /**
 *
 * Updates the control board with the timer if time > 0
@@ -230,9 +238,9 @@ function startTimer() {
 * the moles.
 *
 */
+
 function whack(event) {
-  // TODO: Write your code here.
-  // call updateScore()
+  updateScore();
   return points;
 }
 
@@ -241,9 +249,11 @@ function whack(event) {
 * Adds the 'click' event listeners to the moles. See the instructions
 * for an example on how to set event listeners using a for loop.
 */
-function setEventListeners(){
-  // TODO: Write your code here
 
+function setEventListeners(moles) {
+  moles.forEach(mole => {
+    mole.addEventListener('click', whack);
+  });
   return moles;
 }
 
