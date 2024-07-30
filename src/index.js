@@ -179,13 +179,8 @@ function toggleVisibility(hole) {
 *
 */
 function updateScore() {
-  // Increment the points global variable by 1 point
   points ++;
-
-  // Update score.textContent with points
   score.textContent = points;
-
-  // Return points
   return points;
 }
 
@@ -196,25 +191,24 @@ function updateScore() {
 * the points.
 *
 */
+
 function clearScore() {
-  // Set the points global variable to 0
   points = 0;
-
-  // Update score.textContent with points
   score.textContent = points;
-
-  // Return points
   return points;
 }
+
 /**
 *
 * Updates the control board with the timer if time > 0
 *
 */
+
 function updateTimer() {
-  // TODO: Write your code here.
-  // hint: this code is provided to you in the instructions.
-  
+  if (time > 0){
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
 
@@ -224,11 +218,12 @@ function updateTimer() {
 * the updateTimer function get called. This function is already implemented
 *
 */
+
 function startTimer() {
-  // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
-  return timer;
-}
+    timer = setInterval(updateTimer, 1000);
+    return timer;
+  }
+
 
 /**
 *
@@ -251,11 +246,12 @@ function whack(event) {
 */
 
 function setEventListeners(moles) {
-  moles.forEach(mole => {
-    mole.addEventListener('click', whack);
-  });
+  moles.forEach(mole =>
+    mole.addEventListener('click', whack)
+  );
   return moles;
 }
+
 
 /**
 *
