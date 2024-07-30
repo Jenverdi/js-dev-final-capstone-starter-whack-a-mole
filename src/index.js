@@ -178,6 +178,7 @@ function toggleVisibility(hole) {
 * for your implementation:
 *
 */
+
 function updateScore() {
   points ++;
   score.textContent = points;
@@ -259,6 +260,7 @@ function setEventListeners(moles) {
 * that a player has to click on the sprites.
 *
 */
+
 function setDuration(duration) {
   time = duration;
   return time;
@@ -270,6 +272,7 @@ function setDuration(duration) {
 * timer using clearInterval. Returns "game stopped".
 *
 */
+
 function stopGame(){
   stopAudio(song);  //optional
   clearInterval(timer);
@@ -282,6 +285,7 @@ function stopGame(){
 * is clicked.
 *
 */
+
 function startGame(){
   setDuration(10);
   showUp();
