@@ -3,6 +3,9 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score');
 const timerDisplay = document.querySelector('#timer'); 
+const clickSound = new Audio("https://github.com/Jenverdi/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/hit.mp3?raw=true");
+const backgroundMusic = new Audio("https://github.com/Jenverdi/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/molesong.mp3?raw=true");
+backgroundMusic.controls = false;
 
 let time;
 let timer;
@@ -234,6 +237,7 @@ startTimer()
 
 function whack(event) {
   updateScore();
+  clickSound.play();
   return points;
 }
 
@@ -287,6 +291,7 @@ function stopGame(){
 function startGame(){
   setDuration(10);
   showUp();
+  backgroundMusic.play();
   return "game started";
 }
 
