@@ -195,7 +195,6 @@ function clearScore() {
   score.textContent = points;
   return points;
 }
-clearScore()
 
 /**
 *
@@ -291,8 +290,10 @@ function startGame(){
   return "game started";
 }
 
-startButton.addEventListener("click", startGame);
-
+startButton.addEventListener('click', () => {
+  clearScore(); // Clear the score when starting a new game
+  startGame();  // Start the game
+});
 
 // Please do not modify the code below.
 // Used for testing purposes.
